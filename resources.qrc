@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/go_to_xyz" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
