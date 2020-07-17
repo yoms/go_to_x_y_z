@@ -5,12 +5,12 @@
 [general]
 name=Go to XYZ
 qgisMinimumVersion=3.0
-description=Create a polygon on XYZ bbox
-version=0.1
+description=Create a polygon on XYZ or TMS bbox
+version=0.3
 author=Guillaume Hormière
 email=hormiere.guillaume@gmail.com
 
-about=Generate a bbox for the given xyz
+about=Generate a bbox for the given xyz or TMS coordinate
 
 tracker=https://github.com/yoms/go_to_x_y_z/issues
 repository=https://github.com/yoms/go_to_x_y_z

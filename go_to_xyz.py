@@ -189,17 +189,22 @@ class GoToXYZ:
         self.dlg.show()
         result = self.dlg.exec_()
         if result:
-            tile_z = self.dlg.z_lineEdit.text()
-            tile_x = self.dlg.x_lineEdit.text()
-            tile_y = self.dlg.y_lineEdit.text()
 
-            tile = mercantile.Tile(int(tile_x), int(tile_y), int(tile_z))
+            tile_z = int(self.dlg.z_lineEdit.text())
+            tile_x = int(self.dlg.x_lineEdit.text())
+            tile_y = int(self.dlg.y_lineEdit.text())
+            name = '{}_{}_{}_extend'.format(tile_z,
+                                            tile_x,
+                                            tile_y)
+
+            if self.dlg.XYZ_radiobutton.isChecked():
+                tile_y = (2 ** tile_z) - tile_y - 1
+
+            tile = mercantile.Tile(tile_x, tile_y, tile_z)
             feature = mercantile.feature(tile)
 
             json_file = tempfile.mktemp(suffix='.geojson')
             json.dump(feature, open(json_file, mode='w+'))
             self.iface.addVectorLayer(json_file,
-                                      '{}_{}_{}_extend'.format(tile_z,
-                                                               tile_x,
-                                                               tile_y),
+                                      name,
                                       "ogr")

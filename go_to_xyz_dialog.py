@@ -39,3 +39,17 @@ class GoToXYZDialog(QtWidgets.QDialog, FORM_CLASS):
         self.z_lineEdit.setValidator(QtGui.QIntValidator(self.z_lineEdit))
         self.x_lineEdit.setValidator(QtGui.QIntValidator(self.x_lineEdit))
         self.y_lineEdit.setValidator(QtGui.QIntValidator(self.y_lineEdit))
+
+        self.XYZ_radiobutton.clicked.connect(self.checked_change)
+        self.tms_radiobutton.clicked.connect(self.checked_change)
+
+    def checked_change(self):
+        try:
+            tile_z = int(self.z_lineEdit.text())
+            tile_y = int(self.y_lineEdit.text())
+
+            tile_y = (2 ** tile_z) - tile_y - 1
+            self.y_lineEdit.setText(str(tile_y))
+
+        except ValueError:
+            pass
